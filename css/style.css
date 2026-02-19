@@ -1,0 +1,285 @@
+:root {
+    /* Semantic Palette */
+    --c-paper: #F9F7F2;       /* Warm simplified background */
+    --c-paper-dark: #EFECE4;  /* Slightly darker paper for cards */
+    --c-ink: #2C2825;         /* Soft black for main text */
+    --c-ink-light: #595552;   /* Secondary text */
+    --c-accent: #C28E5C;      /* Sacred Gold/Bronze */
+    --c-accent-dark: #9A6B3C;
+    --c-subtle: #D6D2C8;      /* Borders/Dividers */
+    --c-white: #FFFFFF;
+    
+    /* Spacing System */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px rgba(44, 40, 37, 0.04);
+    --shadow-hover: 0 8px 30px rgba(44, 40, 37, 0.08);
+
+    /* Typography */
+    --font-serif: "Playfair Display", Georgia, serif;
+    --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Reset & Base */
+body {
+    background-color: var(--c-paper);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--c-ink);
+    margin-bottom: var(--space-sm);
+    line-height: 1.2;
+}
+
+a { color: var(--c-accent-dark); text-decoration: none; transition: 0.2s; }
+a:hover { color: var(--c-ink); }
+
+/* Layout Utilities */
+.container-reading {
+    max-width: 840px; /* Optimal reading width */
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+/* Header Redesign */
+.app-header {
+    text-align: center;
+    position: relative;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--c-ink);
+    color: var(--c-white);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: var(--space-sm);
+}
+
+/* Site logo (replaces brand-badge + h1) */
+.site-logo-link { display: block; text-align: center; margin-bottom: var(--space-sm); }
+.site-logo { height: 100px; width: auto; display: inline-block; object-fit: contain; }
+
+.date-display {
+    display: inline-block;
+    background: rgba(44,40,37, 0.05);
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--c-ink-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.date-display:hover {
+    background: rgba(44,40,37, 0.1);
+    color: var(--c-ink);
+}
+
+/* Custom Date Picker hiding strategy */
+.date-picker-wrapper {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 20;
+    padding: 6px 8px; /* aumenta área clicável */
+    min-width: 220px;
+    min-height: 56px;
+    gap: 0.5rem;
+}
+.hidden-picker {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px; /* cover only the central label area */
+    height: 36px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10; /* keep beneath the nav buttons */
+}
+
+/* Tabs as Segmented Control */
+.segmented-nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.nav-pill-custom {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Modest border */
+    padding: 10px 24px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--c-ink-light);
+    border-radius: var(--radius-pill);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-pill-custom:hover {
+    color: var(--c-ink);
+    background: rgba(255,255,255,0.8);
+    border-color: rgba(0,0,0,0.1);
+}
+
+.nav-pill-custom.active {
+    background: var(--c-white);
+    color: var(--c-ink);
+    box-shadow: var(--shadow-soft);
+    border-color: transparent;
+}
+
+/* Cards & Content */
+.reading-card {
+    background: var(--c-white);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0,0,0,0.02);
+    transition: transform 0.2s ease;
+}
+
+.reading-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.reading-label {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: var(--c-accent-dark);
+    margin-bottom: var(--space-xs);
+    display: block;
+}
+
+.chapter-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--c-accent);
+    line-height: 1;
+    margin-right: var(--space-sm);
+    float: left;
+}
+
+.bible-text {
+    font-family: var(--font-serif);
+    font-size: calc(1.1rem * var(--bible-font-scale, 1));
+    color: var(--c-ink);
+    line-height: 1.8;
+}
+
+/* Use a more readable sans font for the reading area only */
+#plan-cards .bible-text {
+    font-family: var(--font-sans);
+    font-size: calc(1rem * var(--bible-font-scale, 1));
+    line-height: 1.75;
+    color: var(--c-ink);
+}
+
+/* Font controls */
+.font-controls { align-items: center; gap: 0.5rem; }
+.font-btn { padding: 6px 10px; border-radius: 8px; font-weight: 700; background: #ffffff; border: 1px solid rgba(0,0,0,0.06); color: var(--c-ink-light); }
+.font-btn:focus { box-shadow: none; }
+.font-btn.small { font-size: 0.85rem; }
+
+.bible-ref {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    padding: var(--space-lg) 0;
+    border-top: 1px solid var(--c-subtle);
+    margin-top: var(--space-xl);
+    color: var(--c-ink-light);
+    font-size: 0.9rem;
+}
+
+.source-credits {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-size: 0.8rem;
+    opacity: 0.7;
+    flex-wrap: wrap;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* Error/Empty States */
+.empty-state {
+    text-align: center;
+    padding: var(--space-lg);
+    color: var(--c-ink-light);
+}
+
+/* Additional styles moved from inline in index.php */
+.date-arrow { display: none; }
+.date-helper { font-size: 0.75rem; opacity: 0.8; }
+.plan-description { max-width: 400px; margin: 0 auto; }
+.app-footer h3 { letter-spacing: 2px; }
+.footer-note { max-width: 680px; margin: 0.5rem auto 0; }
+.source-credits { gap: 0.5rem; }
+.myrotech-logo { height: 28px; opacity: 0.95; margin-left: 0.25rem; }
+
+/* link-card styles for Liturgia / Santo */
+.links-row { margin-top: 0.5rem; }
+.link-card { height: 140px; }
+.link-card .card-body { display:flex; flex-direction:column; justify-content:center; }
+.link-btn { height: 96px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.35rem; background: #f5f5f5; border: 1px solid #e0e0e0; color: #6b6b6b; }
+.link-btn:hover { background: #f0f0f0; color: #4f4f4f; }
+.link-btn:focus { box-shadow: none; }
+.link-btn .link-logo { width: 36px; height: 36px; display:block; object-fit:contain; }
+.link-btn .link-text { display:block; font-weight:700; font-size:0.85rem; color:inherit; }
+
+/* date navigation buttons */
+.date-nav {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 25; /* above the hidden picker so clicks work */
+}
+.date-display { display: inline-flex; align-items: center; gap: 0.4rem; z-index: 20; padding: 10px 18px; min-height: 44px; }
